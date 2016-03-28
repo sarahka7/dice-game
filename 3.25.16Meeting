@@ -1,0 +1,28 @@
+General idea - from TAs
+- Dice Game, any kind, any size dice
+- keep score
+- rank board
+- easy GUI or "1970's" ASCII okay too
+- person vs. person or person vs. computer 
+
+Ideas from our group meeting
+- use text based until last week then convert to graphical (maybe use web interface)
+- use Java and maybe netbeans for GUI- will work on top of main app (Eric?) 
+- Anders to orchestrate Github setup/testing using issues, pull requests
+
+Game Idea thus far: 
+- Roll 4 dice (maybe standard or non-standard- tbd) and try to get to a specific sum in so many rolls. Sort of like "21" but with dice. 
+- User could decide how many dice to roll each round.
+- If you reach the sum (perhaps 42?) within so many rolls, you win the game. 
+- Should stats for just a current game be saved, or should previous stats be saved as well for comparison (like arcade leaderboard?)
+- Random class to determine dice values (for # of  die sides?) 
+
+- Game variables: 
+      int numRolls; 
+      int numDice; 
+      int numSides;
+      final int TARGETNUM = 42; // or should a target be determined randomly each new game? 
+
+-Possible leaderboard data: 
+    Name            numRolls to target number         Target             
+      
