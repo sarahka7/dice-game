@@ -15,6 +15,7 @@ The goal of the game is to accumulate exactly 23 points, or get as close as you 
 3.  The player will have the option to stop there and record their score or they can roll again to increase their total.
 4.  If the player rolls again, they have the option to use 1, 2, or 3 dice.
     - Remember that you do no want to exceed 23 points.
+5.  The player can roll as many times as they want, but as soon as their total score equals or exceeds 23 then the game is over.
 
 # Testing
 [Install Gradle](https://docs.gradle.org/current/userguide/installation.html),
