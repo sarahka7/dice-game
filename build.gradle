@@ -1,9 +1,12 @@
 apply plugin: 'java'
+apply plugin: 'application'
+mainClassName = "Driver"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    compile 'com.opencsv:opencsv:3.7'
     testCompile 'junit:junit:4.12'
 }
