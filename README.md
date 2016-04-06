@@ -17,12 +17,55 @@ The goal of the game is to accumulate exactly 23 points, or get as close as you 
     - Remember that you do no want to exceed 23 points.
 5.  The player can roll as many times as they want, but as soon as their total score equals or exceeds 23 then the game is over.
 
-# Testing
-[Install Gradle](https://docs.gradle.org/current/userguide/installation.html),
-then run
+# Getting the Game
+
+Clone this repository using git. Open a terminal console and navigate to the
+root of the repository.
+
+# Running the Game
+
+Running the tests requires Java JDK 7 or higher to be installed and available
+on your `PATH`.
+
+## Linux
+
+### CLI Version
 
 ```bash
-gradle test
+./gradlew :cli:run
 ```
 
-From the `dice-game` directory.
+### Swing GUI Version
+
+```bash
+./gradlew :gui:run
+```
+
+## Windows
+
+### CLI Version
+
+```
+gradle.bat :cli:run
+```
+
+### Swing GUI Version
+```
+gradle.bat :gui:run
+```
+
+# Running the Tests
+
+Running the tests requires Java JDK 7 or higher to be installed and available
+on your `PATH`.
+
+## Linux
+
+```bash
+./gradlew check 
+```
+## Windows
+
+```
+gradlew.bat check
+```
