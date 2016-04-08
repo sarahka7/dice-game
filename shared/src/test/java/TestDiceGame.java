@@ -79,9 +79,8 @@ public class TestDiceGame {
 
         try {
             int total = game.roll(3);
-            int score = 23 - total;
 
-            assertEquals(score, game.getScore());
+            assertEquals(total, game.getScore());
         }
         catch (RollAfterGameOverException e) {
             fail();
@@ -137,5 +136,12 @@ public class TestDiceGame {
         catch (RollAfterGameOverException e) {
             fail();
         }
+    }
+    
+    @Test
+    public void testZeroScore() {
+        DiceGame game = new DiceGame();
+
+        assertEquals(0, game.getScore());
     }
 }
