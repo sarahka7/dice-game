@@ -35,14 +35,16 @@ public class DiceGame {
     public int getScore() {
         int score;
 
-        if (getCurrentTotal() > MAX_TOTAL) {
+        int currentTotal = getCurrentTotal();
+
+        if (currentTotal > MAX_TOTAL) {
             score = 0;
         }
-        else if (getCurrentTotal() == MAX_TOTAL) {
+        else if (currentTotal == MAX_TOTAL) {
             score = 2 * MAX_TOTAL;
         }
         else {
-            score = MAX_TOTAL - getCurrentTotal();
+            score = currentTotal;
         }
 
         return score;
