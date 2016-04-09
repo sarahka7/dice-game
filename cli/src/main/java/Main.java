@@ -20,7 +20,7 @@ public class Main {
             System.out.println("2. Play");
             System.out.println("3. Quit");
             
-            input = Integer.parseInt(scan.nextLine());
+            input = getIntInput();
             
             switch(input) {
                case 1:
@@ -34,7 +34,7 @@ public class Main {
                   continueGame = false;
                   break;
                default:
-                  System.out.println("\nInvalid! Please try again!\n");
+                  System.out.println("\nError: Invalid option, try again!\n");
                   break;
             }
          } while (continueGame);
@@ -71,7 +71,7 @@ public class Main {
             System.out.println("2. Change number of dice");
             System.out.println("3. Stop rolling");
             
-            input = Integer.parseInt(scan.nextLine());
+            input = getIntInput();
                   
             switch(input) {
                case 1:
@@ -93,7 +93,7 @@ public class Main {
                   continueGame = false;
                   break;
                default:
-                  System.out.println("Invalid! Please try again!\n");
+                  System.out.println("Error: Invalid option, try again!\n");
                   break;
             }
             
@@ -112,9 +112,25 @@ public class Main {
          
          do {
             System.out.print("\nEnter number of dice (1-3): ");
-            numDice = Integer.parseInt(scan.nextLine());
+            
+            numDice = getIntInput();
+            
          } while (numDice < 1 || numDice > 3);
          
          return numDice;
+    }
+    
+    public static int getIntInput() {
+      Scanner scan = new Scanner(System.in);
+      int input = 0;
+      
+      while (!scan.hasNextInt()) {
+         System.out.println("\nError: Input must be an integer, please try again!\n");
+         scan.next(); //Clears the new line character
+      }
+      
+      input = scan.nextInt();
+      
+      return input;
     }
 }
