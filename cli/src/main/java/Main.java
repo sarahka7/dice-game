@@ -20,12 +20,7 @@ public class Main {
             System.out.println("2. Play");
             System.out.println("3. Quit");
             
-            while (!scan.hasNextInt()) {
-               System.out.println("\nError: Input must be an integer, please try again!\n");
-               scan.next(); //Clears the new line character
-            }
-            
-            input = scan.nextInt();
+            input = getIntInput();
             
             switch(input) {
                case 1:
@@ -76,12 +71,7 @@ public class Main {
             System.out.println("2. Change number of dice");
             System.out.println("3. Stop rolling");
             
-            while (!scan.hasNextInt()) {
-               System.out.println("\nError: Input must be an integer, please try again!\n");
-               scan.next(); //Clears the new line character
-            }
-            
-            input = scan.nextInt();
+            input = getIntInput();
                   
             switch(input) {
                case 1:
@@ -123,15 +113,23 @@ public class Main {
          do {
             System.out.print("\nEnter number of dice (1-3): ");
             
-            while (!scan.hasNextInt()) {
-               System.out.println("\nError: Input must be an integer, please try again!\n");
-               scan.next(); //Clears the new line character
-            }
-            
-            numDice = scan.nextInt();
+            numDice = getIntInput();
             
          } while (numDice < 1 || numDice > 3);
          
          return numDice;
+    }
+    
+    public static int getIntInput() {
+      int input = 0;
+      
+      while (!scan.hasNextInt()) {
+         System.out.println("\nError: Input must be an integer, please try again!\n");
+         scan.next(); //Clears the new line character
+      }
+      
+      input = scan.nextInt();
+      
+      return input;
     }
 }
