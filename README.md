@@ -41,9 +41,7 @@ on your `PATH`.
 
 ### Swing GUI Version
 
-```bash
-./gradlew :gui:run
-```
+In Progress - Week 3
 
 ## Windows
 
@@ -54,9 +52,8 @@ gradle.bat :cli:run
 ```
 
 ### Swing GUI Version
-```
-gradle.bat :gui:run
-```
+
+In Progress - Week 3
 
 # Running the Tests
 
