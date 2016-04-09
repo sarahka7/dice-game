@@ -1,8 +1,5 @@
 package dice;
 
-/**
- * 
- */
 public class RollRecord {
     private String userId;
     private int gameId;
@@ -33,7 +30,7 @@ public class RollRecord {
 
     /**
      * Function to return the userId
-     * @return string -> userId
+     * @return string -> userId The players name in the game. Consists of three letters, usually the players initials.
      */
     public String getUserId() {
         return userId;
@@ -41,7 +38,7 @@ public class RollRecord {
 
     /**
      * Function to return the gameId
-     * @return int -> gameId
+     * @return int -> gameId ID associated with a particualar game.
      */
     public int getGameId() {
         return gameId;
@@ -49,7 +46,7 @@ public class RollRecord {
 
     /**
      * Function to return the total number of dice used in a game.
-     * @return int -> numDice
+     * @return int -> numDice Number of dice the player chooses to roll.
      */
     public int getNumDice() {
         return numDice;
@@ -57,7 +54,7 @@ public class RollRecord {
 
     /**
      * Function to return the total value of all dice rolled by the player.
-     * @return int -> rollValue
+     * @return int -> rollValue The total value of all dice rolled by the player.
      */
     public int getRollValue() {
         return rollValue;
@@ -65,7 +62,7 @@ public class RollRecord {
 
     /**
      * Function to return the total number of rolls by a player in a game.
-     * @return int -> rollsCount
+     * @return int -> rollsCount Number of rolls by the player before the game was finished.
      */
     public int getRollsCount() {
         return rollsCount;
@@ -73,7 +70,7 @@ public class RollRecord {
 
     /**
      * Function to return the total score for a player.
-     * @return int -> totalScore
+     * @return int -> totalScore Total score after the game is finished.
      */
     public int getTotalScore() {
         return totalScore;
