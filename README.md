@@ -28,6 +28,13 @@ root of the repository.
 
 # Running the Game
 
+CLI and GUI jar files of the game can be downloaded from the releases page.
+Note that the GUI may require Java 8 in order to run.
+
+The CLI version of the game can also be run using gradle as described below.
+The GUI version is not yet integrated into our gradle build system, but
+we're working on that.
+
 Running the tests requires Java JDK 7 or higher to be installed and available
 on your `PATH`.
 
