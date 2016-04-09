@@ -17,7 +17,7 @@ public class RollRecord {
      * @param  userId     The players name in the game. Consists of three letters, usually the players initials.
      * @param  gameId     ID associated with a particualar game.
      * @param  numDice    Number of dice the player chooses to roll.
-     * @param  rollValue  The totaled value of all dice rolled by the player.
+     * @param  rollValue  The total value of all dice rolled by the player.
      * @param  rollsCount Number of rolls by the player before the game was finished.
      * @param  totalScore Total score after the game is finished.
      */
@@ -56,7 +56,7 @@ public class RollRecord {
     }
 
     /**
-     * ???
+     * Function to return the total value of all dice rolled by the player.
      * @return int -> rollValue
      */
     public int getRollValue() {
