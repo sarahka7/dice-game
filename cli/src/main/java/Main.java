@@ -121,6 +121,7 @@ public class Main {
     }
     
     public static int getIntInput() {
+      Scanner scan = new Scanner(System.in);
       int input = 0;
       
       while (!scan.hasNextInt()) {
