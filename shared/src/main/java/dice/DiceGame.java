@@ -11,20 +11,16 @@ public class DiceGame {
         die = new Die();
     }
 
-    public int rollSingle() throws RollAfterGameOverException {
+    public int roll(int numDice) throws RollAfterGameOverException {
+
         if (getCurrentTotal() >= MAX_TOTAL) {
             throw new RollAfterGameOverException();
         }
 
-        return die.roll();
-    }
-
-    public int roll(int numDice) throws RollAfterGameOverException {
-
         int rollTotal = 0;
 
         for (int dieIndex = 0; dieIndex < numDice; dieIndex++) {
-            rollTotal += rollSingle();
+            rollTotal += die.roll();
         }
 
         currentTotal += rollTotal;
