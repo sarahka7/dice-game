@@ -21,5 +21,8 @@ public class TestMockStatsProcessor {
         StatsData stats = proc.getPlayerStats("ABC");
         assertThat(stats.getTotalRolls(), equalTo(100));
         assertThat(stats.getAvgRollsPerGame(), equalTo(4.3));
+        assertThat(stats.getCumulativeScore(), equalTo(2000));
+        assertThat(stats.getAvgScore(), equalTo(18.2));
+        assertThat(stats.getAvgNumDiceUsed(), equalTo(2.1));
     }
 }

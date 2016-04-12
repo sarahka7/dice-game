@@ -37,13 +37,24 @@ class MockStatsProcessor extends StatsProcessor {
     }
 
     public StatsData getPlayerStats(String playerName) {
+
+        StatsData stats;
+
         if (playerName.equals("ABC")) {
-            return new StatsData.Builder()
+            stats = new StatsData.Builder()
                 .totalRolls(100)
                 .avgRollsPerGame(4.3)
+                .cumulativeScore(2000)
+                .avgScore(18.2)
+                .avgNumDiceUsed(2.1)
                 .build();
         }
-        return new StatsData.Builder().build();
+        else {
+            // defaults
+            stats = new StatsData.Builder().build();
+        }
+
+        return stats;
     }
 
     public RollRecord getFirstRecord() throws IOException {
