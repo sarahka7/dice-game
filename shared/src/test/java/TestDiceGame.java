@@ -1,7 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 import java.io.IOException;
-
 import dice.*;
 
 public class TestDiceGame {
@@ -13,8 +13,8 @@ public class TestDiceGame {
             DiceGame game = new DiceGame();
 
             try {
-                int roll = game.roll(1);
-                assertTrue(roll >= 1 && roll <= 6);
+                RollResult roll = game.roll(1);
+                assertTrue(roll.sum() >= 1 && roll.sum() <= 6);
             }
             catch (RollAfterGameOverException e) {
                 fail();
@@ -29,8 +29,8 @@ public class TestDiceGame {
             DiceGame game = new DiceGame();
 
             try {
-                int roll = game.roll(2);
-                assertTrue(roll >= 2 && roll <= 12);
+                RollResult roll = game.roll(2);
+                assertTrue(roll.sum() >= 2 && roll.sum() <= 12);
             }
             catch (RollAfterGameOverException e) {
                 fail();
@@ -45,8 +45,8 @@ public class TestDiceGame {
             DiceGame game = new DiceGame();
 
             try {
-                int roll = game.roll(3);
-                assertTrue(roll >= 3 && roll <= 18);
+                RollResult roll = game.roll(3);
+                assertTrue(roll.sum() >= 3 && roll.sum() <= 18);
             }
             catch (RollAfterGameOverException e) {
                 fail();
@@ -60,9 +60,9 @@ public class TestDiceGame {
         DiceGame game = new DiceGame();
 
         try {
-            int total = game.roll(1);
-            total += game.roll(1);
-            total += game.roll(1);
+            int total = game.roll(1).sum();
+            total += game.roll(1).sum();
+            total += game.roll(1).sum();
 
             int currentTotal = game.getCurrentTotal();
             assertEquals(total, currentTotal);
@@ -78,9 +78,9 @@ public class TestDiceGame {
         DiceGame game = new DiceGame();
 
         try {
-            int total = game.roll(3);
+            RollResult roll = game.roll(3);
 
-            assertEquals(total, game.getScore());
+            assertEquals(roll.sum(), game.getScore());
         }
         catch (RollAfterGameOverException e) {
             fail();
@@ -98,7 +98,7 @@ public class TestDiceGame {
         // hack. go until we randomly get a score of 23
         do {
             try {
-                total += game.roll(1);
+                total += game.roll(1).sum();
             }
             catch (RollAfterGameOverException e) {
                 fail();
@@ -125,13 +125,13 @@ public class TestDiceGame {
         DiceGame game = new DiceGame();
 
         try {
-            int total = game.roll(3);
+            int total = game.roll(3).sum();
             
             while (total < 23) {
-                total += game.roll(3);
+                total += game.roll(3).sum();
             }
 
-            assertEquals(0, game.getScore());
+            assertThat(game.getScore(), anyOf(equalTo(0), equalTo(46)));
         }
         catch (RollAfterGameOverException e) {
             fail();
