@@ -10,7 +10,12 @@ public class TestStatsProcessor {
 
     @Before
     public void setUp() {
-        proc = new StatsProcessor("src/test/resources/testDatabase.csv");
+        proc = StatsProcessor.create();
+    }
+
+    @Test
+    public void getStatsProcessor() {
+        StatsProcessor proc = StatsProcessor.create();
     }
 
     @Test

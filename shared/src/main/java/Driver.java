@@ -3,8 +3,7 @@ import dice.*;
 
 public class Driver {
     public static void main(String[] args) {
-        StatsProcessor proc =
-            new StatsProcessor("src/test/resources/testDatabase.csv");
+        StatsProcessor proc = StatsProcessor.create();
         try {
             proc.getFirstRecord();
         }
