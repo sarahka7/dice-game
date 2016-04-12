@@ -55,7 +55,7 @@ In Progress - Week 3
 ### CLI Version
 
 ```
-gradle.bat :cli:run
+gradlew :cli:run
 ```
 
 ### Swing GUI Version
@@ -75,5 +75,5 @@ on your `PATH`.
 ## Windows
 
 ```
-gradlew.bat check
+gradlew check
 ```
