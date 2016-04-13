@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DiceGameUI;
 
 import javax.swing.*;
 import java.util.*;
-
+import dice*;
 /**
  *
  * @author Nguyen
