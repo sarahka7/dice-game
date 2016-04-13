@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package DiceGameUI;
 
 import javax.swing.*;
 import java.util.*;
-import dice.*;
+
 /**
  *
  * @author Nguyen
@@ -23,12 +23,12 @@ public class DiceGameGUI2 extends javax.swing.JFrame {
     }
     
     private void initVar(){
-	thisGame = new DiceGame();
-        listLbl = new ArrayList();
+	     thisGame = new DiceGame();
+        listLbl = new ArrayList<>();
         listLbl.add(picDie1);
-	listLbl.add(picDie2);
-	listLbl.add(picDie3);
-        listIcon = new ArrayList();
+	     listLbl.add(picDie2);
+	     listLbl.add(picDie3);
+        listIcon = new ArrayList<>();
         listIcon.add(new javax.swing.ImageIcon(getClass().getResource("/DiceGameUI/die_face_1.png")));
 	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("/DiceGameUI/die_face_2.png")));
 	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("/DiceGameUI/die_face_3.png")));
@@ -229,22 +229,22 @@ public class DiceGameGUI2 extends javax.swing.JFrame {
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
 // TODO add your handling code here:
         int diceNumber = Integer.parseInt(txtDiceNumber.getText());
-        Integer rScore = 0;
+        RollResult rScore = new RollResult();
         try{rScore = thisGame.roll(diceNumber);} 
         catch (RollAfterGameOverException ex)
         {ex.getStackTrace();}
         Integer tScore = thisGame.getCurrentTotal();
-        lblRollScore.setText(rScore.toString());
+        lblRollScore.setText(""+rScore.sum());
         lblTotalScore.setText(tScore.toString());
         txtDiceNumber.setEnabled(true);
         
-        for (int index = 0; index < thisGame.getLastRoll().length; index++)
+        for (int index = 0; index < rScore.rollCount(); index++)
         {
-            int dieValue = thisGame.getLastRoll()[index];
+            int dieValue = rScore.rollsArray()[index];
             if(dieValue == 0)
                 listLbl.get(index).setIcon(listIcon.get(5));
             else
-            listLbl.get(index).setIcon(listIcon.get(dieValue-1));
+               listLbl.get(index).setIcon(listIcon.get(dieValue-1));
         }
         
         if (thisGame.getCurrentTotal() >= 23){
@@ -330,35 +330,6 @@ public class DiceGameGUI2 extends javax.swing.JFrame {
                 listLbl.get(index).setIcon(listIcon.get(6));
         }
     }
-    
-    public void changeDiePic(int number, JLabel label){
-        switch (number)
-        {
-            case 1: 
-                label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DiceGameUI/die_face_1.png")));
-                break;
-            case 2:
-                label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DiceGameUI/die_face_2.png")));
-                break;
-            case 3:
-                label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DiceGameUI/die_face_3.png")));
-                break;
-            case 4:
-                label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DiceGameUI/die_face_4.png")));
-                break;
-            case 5:
-                label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DiceGameUI/die_face_5.png")));
-                break;
-            case 6:
-                label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/DiceGameUI/die_face_6.png")));
-                break;
-        }
-    }
-            
-    
-    
-    
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
