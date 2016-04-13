@@ -11,12 +11,12 @@ import dice.*;
  *
  * @author Nguyen
  */
-public class DiceGameGUI2 extends javax.swing.JFrame {
+public class DiceGameGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form DiceGameGUI
      */
-    public DiceGameGUI2() {
+    public DiceGameGUI() {
         initComponents();
 		   initVar();
     }
@@ -28,13 +28,13 @@ public class DiceGameGUI2 extends javax.swing.JFrame {
 	     listLbl.add(picDie2);
 	     listLbl.add(picDie3);
         listIcon = new ArrayList<>();
-        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_1.png")));
-	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_2.png")));
-	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_3.png")));
-	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_4.png")));
-	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_5.png")));
-	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_6.png")));
-        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("/java/die-a.gif")));
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_1.png")));
+	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_2.png")));
+	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_3.png")));
+	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_4.png")));
+	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_5.png")));
+	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png")));
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die-a.gif")));
 	}
     
     /**
@@ -101,13 +101,13 @@ public class DiceGameGUI2 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Player's Name");
 
-        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_6.png"))); // NOI18N
+        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
         picDie1.setEnabled(false);
 
-        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_6.png"))); // NOI18N
+        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
         picDie2.setEnabled(false);
 
-        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_6.png"))); // NOI18N
+        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
         picDie3.setEnabled(false);
 
         btnReset.setText("RESET");
@@ -215,13 +215,13 @@ public class DiceGameGUI2 extends javax.swing.JFrame {
         lblTotalScore.setText("0");
         txtDiceNumber.setText("");
         btnRoll.setEnabled(true);
-        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_6.png"))); // NOI18N
+        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
         picDie1.setEnabled(false);
 
-        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_6.png"))); // NOI18N
+        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
         picDie2.setEnabled(false);
 
-        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/java/die_face_6.png"))); // NOI18N
+        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
         picDie3.setEnabled(false);
     }//GEN-LAST:event_btnResetActionPerformed
 
@@ -290,7 +290,7 @@ public class DiceGameGUI2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DiceGameGUI2().setVisible(true);
+                new DiceGameGUI().setVisible(true);
             }
         });           
     }
