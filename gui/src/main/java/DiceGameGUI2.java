@@ -3,18 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-<<<<<<< HEAD
-
 
 import javax.swing.*;
 import java.util.*;
 import dice.*;
-=======
-
-import javax.swing.*;
-import java.util.*;
-import dice*;
->>>>>>> d0ad09b140e305206dfa7f552b0dbaa41a704811
 /**
  *
  * @author Nguyen
@@ -26,7 +18,7 @@ public class DiceGameGUI2 extends javax.swing.JFrame {
      */
     public DiceGameGUI2() {
         initComponents();
-		initVar();
+		   initVar();
     }
     
     private void initVar(){
@@ -296,10 +288,11 @@ public class DiceGameGUI2 extends javax.swing.JFrame {
     public static void main(String args[]) {
         
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new DiceGameGUI2().setVisible(true);
-        });
-        
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new DiceGameGUI2().setVisible(true);
+            }
+        });           
     }
     
     
