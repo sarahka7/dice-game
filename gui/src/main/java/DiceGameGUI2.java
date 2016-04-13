@@ -3,11 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+<<<<<<< HEAD
 
 
 import javax.swing.*;
 import java.util.*;
 import dice.*;
+=======
+
+import javax.swing.*;
+import java.util.*;
+import dice*;
+>>>>>>> d0ad09b140e305206dfa7f552b0dbaa41a704811
 /**
  *
  * @author Nguyen
