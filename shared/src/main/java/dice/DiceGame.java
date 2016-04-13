@@ -11,25 +11,24 @@ public class DiceGame {
         die = new Die();
     }
 
-    public int rollSingle() throws RollAfterGameOverException {
+    public RollResult roll(int numDice) throws RollAfterGameOverException {
+
         if (getCurrentTotal() >= MAX_TOTAL) {
             throw new RollAfterGameOverException();
         }
 
-        return die.roll();
-    }
+        RollResult result = new RollResult();
 
-    public int roll(int numDice) throws RollAfterGameOverException {
-
-        int rollTotal = 0;
+        int rollValue = 0;
 
         for (int dieIndex = 0; dieIndex < numDice; dieIndex++) {
-            rollTotal += rollSingle();
+            rollValue = die.roll();
+            result.addRoll(rollValue);
         }
 
-        currentTotal += rollTotal;
+        currentTotal += result.sum();
 
-        return rollTotal;
+        return result;
     }
 
     public int getCurrentTotal() {
