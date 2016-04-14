@@ -76,9 +76,11 @@ public class Main {
             switch(input) {
                case 1:
                   int rollTotal = 0;
+                  RollResult result;
                   
                   try {
-                     rollTotal = game.roll(numDice);
+                     result = game.roll(numDice);
+                     rollTotal = result.sum();
                   } catch (RollAfterGameOverException e) {
                      System.out.println("Error: " + e.getMessage());
                   }

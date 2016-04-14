@@ -1,5 +1,5 @@
 apply plugin: 'application'
-mainClassName = "Main"
+mainClassName = "DiceGameGUI"
 
 dependencies {
     compile project(':shared')
