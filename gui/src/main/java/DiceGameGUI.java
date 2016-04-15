@@ -1,4 +1,4 @@
-package main;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -119,13 +119,13 @@ public class DiceGameGUI extends javax.swing.JFrame {
         lblPlayerName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblPlayerName.setText("Player's Name");
 
-        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
+        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
         picDie1.setEnabled(false);
 
-        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
+        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
         picDie2.setEnabled(false);
 
-        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
+        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
         picDie3.setEnabled(false);
 
         btnReset.setText("RESET");
