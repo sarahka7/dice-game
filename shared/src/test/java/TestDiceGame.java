@@ -10,7 +10,7 @@ public class TestDiceGame {
     public void testRoll1Die() {
         for (int rollIdx = 0; rollIdx < 1000; rollIdx++) {
 
-            DiceGame game = new DiceGame();
+            DiceGame game = DiceGame.create();
 
             try {
                 RollResult roll = game.roll(1);
@@ -26,7 +26,7 @@ public class TestDiceGame {
     public void testRoll2Dice() {
         for (int rollIdx = 0; rollIdx < 1000; rollIdx++) {
 
-            DiceGame game = new DiceGame();
+            DiceGame game = DiceGame.create();
 
             try {
                 RollResult roll = game.roll(2);
@@ -42,7 +42,7 @@ public class TestDiceGame {
     public void testRoll3Dice() {
         for (int rollIdx = 0; rollIdx < 1000; rollIdx++) {
 
-            DiceGame game = new DiceGame();
+            DiceGame game = DiceGame.create();
 
             try {
                 RollResult roll = game.roll(3);
@@ -57,7 +57,7 @@ public class TestDiceGame {
     @Test
     public void testGetCurrentTotal() {
 
-        DiceGame game = new DiceGame();
+        DiceGame game = DiceGame.create();
 
         try {
             int total = game.roll(1).sum();
@@ -75,7 +75,7 @@ public class TestDiceGame {
     @Test
     public void testGetScoreLessThan23() {
 
-        DiceGame game = new DiceGame();
+        DiceGame game = DiceGame.create();
 
         try {
             RollResult roll = game.roll(3);
@@ -90,7 +90,7 @@ public class TestDiceGame {
     @Test
     public void testGetScoreEqualTo23() {
 
-        DiceGame game = new DiceGame();
+        DiceGame game = DiceGame.create();
 
         int total = 0;
         int index = 0;
@@ -105,7 +105,7 @@ public class TestDiceGame {
             }
 
             if (total > 23) {
-                game = new DiceGame();
+                game = DiceGame.create();
                 total = 0;
             }
 
@@ -122,7 +122,7 @@ public class TestDiceGame {
 
     @Test
     public void testGetScoreOver23() {
-        DiceGame game = new DiceGame();
+        DiceGame game = DiceGame.create();
 
         try {
             int total = game.roll(3).sum();
@@ -140,8 +140,62 @@ public class TestDiceGame {
     
     @Test
     public void testZeroScore() {
-        DiceGame game = new DiceGame();
+        DiceGame game = DiceGame.create();
 
         assertEquals(0, game.getScore());
+    }
+
+    @Test
+    public void usernameDefault() {
+        DiceGame game = DiceGame.create();
+        assertThat(game.getUsername(), equalTo("XXX"));
+    }
+
+    @Test
+    public void usernameCustom() {
+        DiceGame game = null;
+        try {
+            game = DiceGame.create("ABC");
+        }
+        catch (InvalidUsernameException e) {
+            fail();
+        }
+
+        assertThat(game.getUsername(), equalTo("ABC"));
+    }
+
+    @Test
+    public void usernameBlankRaisesException() {
+        DiceGame game = null;
+        try {
+            game = DiceGame.create("");
+            fail();
+        }
+        catch (InvalidUsernameException e) {
+            assertThat(e.getMessage(), is("Blank username"));
+        }
+    }
+    @Test
+    public void usernameTooShortRaisesException() {
+        DiceGame game = null;
+        try {
+            game = DiceGame.create("AB");
+            fail();
+        }
+        catch (InvalidUsernameException e) {
+            assertThat(e.getMessage(), is("Username 'AB' too short"));
+        }
+    }
+
+    @Test
+    public void usernameTooLongRaisesException() {
+        DiceGame game = null;
+        try {
+            game = DiceGame.create("ABCD");
+            fail();
+        }
+        catch (InvalidUsernameException e) {
+            assertThat(e.getMessage(), is("Username 'ABCD' too long"));
+        }
     }
 }
