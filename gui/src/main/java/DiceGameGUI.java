@@ -24,19 +24,20 @@ public class DiceGameGUI extends javax.swing.JFrame {
     }
     
     private void initVar(){
-	thisGame = new DiceGame();
-        listLbl = new ArrayList<>();
-        listLbl.add(picDie1);
-	listLbl.add(picDie2);
-	listLbl.add(picDie3);
-        listIcon = new ArrayList<>();
-        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_1.png")));
-	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_2.png")));
-	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_3.png")));
-	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_4.png")));
-	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_5.png")));
-	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png")));
-        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die-a.gif")));
+
+	    thisGame = DiceGame.create();
+       listLbl = new ArrayList<>();
+       listLbl.add(picDie1);
+	    listLbl.add(picDie2);
+	    listLbl.add(picDie3);
+       listIcon = new ArrayList<>();
+       listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_1.png")));
+	    listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_2.png")));
+	    listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_3.png")));
+	    listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_4.png")));
+	    listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_5.png")));
+	    listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png")));
+       listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die-a.gif")));
 	}
     
     /**
@@ -214,7 +215,8 @@ public class DiceGameGUI extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        thisGame = new DiceGame();
+        thisGame = DiceGame.create();
+
         for (int index = 0; index < listLbl.size(); index++)
         {
             listLbl.get(index).setEnabled(false);
