@@ -46,4 +46,14 @@ public class TestMockStatsProcessor {
         assertThat(stats.getAvgScore(), equalTo(22.1));
         assertThat(stats.getAvgNumDiceUsed(), equalTo(1.2));
     }
+
+    @Test
+    public void getAllStats() {
+        StatsData stats = proc.getAllStats();
+        assertThat(stats.getTotalRolls(), equalTo(1001));
+        assertThat(stats.getAvgRollsPerGame(), equalTo(3.4));
+        assertThat(stats.getCumulativeScore(), equalTo(12000));
+        assertThat(stats.getAvgScore(), equalTo(17.2));
+        assertThat(stats.getAvgNumDiceUsed(), equalTo(1.4));
+    }
 }

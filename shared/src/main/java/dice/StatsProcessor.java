@@ -23,6 +23,7 @@ public abstract class StatsProcessor {
 
     public abstract String[] getPlayerList();
     public abstract StatsData getPlayerStats(String playerName);
+    public abstract StatsData getAllStats();
 }
 
 
@@ -78,6 +79,17 @@ class MockStatsProcessor extends StatsProcessor {
 
         return stats;
     }
+
+    public StatsData getAllStats() {
+        StatsData stats = new StatsData.Builder()
+            .totalRolls(1001)
+            .avgRollsPerGame(3.4)
+            .cumulativeScore(12000)
+            .avgScore(17.2)
+            .avgNumDiceUsed(1.4)
+            .build();
+        return stats;
+    }
 }
 
 
@@ -116,6 +128,9 @@ class ConcreteStatsProcessor extends StatsProcessor {
 
         // Pull data out of records here
 
+        return new StatsData.Builder().build();
+    }
+    public StatsData getAllStats() {
         return new StatsData.Builder().build();
     }
 }
