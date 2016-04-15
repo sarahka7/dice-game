@@ -65,8 +65,16 @@ public class Main {
     }
     
     public static void play() {
-         DiceGame game = DiceGame.create();
-
+         //Prompt for initials
+         String name = getInitials();
+         DiceGame game = null;
+         
+         try {
+            game = DiceGame.create(name);
+         } catch (InvalidUsernameException e) {
+            System.out.println("Error: " + e.getMessage());
+         }
+         
          Scanner scan = new Scanner(System.in);
          
          int input = 0;
@@ -222,6 +230,21 @@ public class Main {
       }
       
       input = scan.nextInt();
+      
+      return input;
+    }
+    
+    public static String getInitials() {
+      Scanner scan = new Scanner(System.in);
+      String input;
+      
+      do {
+         System.out.println("\nEnter your initials (3 characters): ");
+         input = scan.nextLine();
+         if (input.length() != 3) {
+            System.out.println("\nError: Initials must contain 3 letters.");
+         }
+      } while (input.length() != 3);
       
       return input;
     }
