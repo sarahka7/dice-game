@@ -144,4 +144,58 @@ public class TestDiceGame {
 
         assertEquals(0, game.getScore());
     }
+
+    @Test
+    public void usernameDefault() {
+        DiceGame game = DiceGame.create();
+        assertThat(game.getUsername(), equalTo("XXX"));
+    }
+
+    @Test
+    public void usernameCustom() {
+        DiceGame game = null;
+        try {
+            game = DiceGame.create("ABC");
+        }
+        catch (InvalidUsernameException e) {
+            fail();
+        }
+
+        assertThat(game.getUsername(), equalTo("ABC"));
+    }
+
+    @Test
+    public void usernameBlankRaisesException() {
+        DiceGame game = null;
+        try {
+            game = DiceGame.create("");
+            fail();
+        }
+        catch (InvalidUsernameException e) {
+            assertThat(e.getMessage(), is("Blank username"));
+        }
+    }
+    @Test
+    public void usernameTooShortRaisesException() {
+        DiceGame game = null;
+        try {
+            game = DiceGame.create("AB");
+            fail();
+        }
+        catch (InvalidUsernameException e) {
+            assertThat(e.getMessage(), is("Username 'AB' too short"));
+        }
+    }
+
+    @Test
+    public void usernameTooLongRaisesException() {
+        DiceGame game = null;
+        try {
+            game = DiceGame.create("ABCD");
+            fail();
+        }
+        catch (InvalidUsernameException e) {
+            assertThat(e.getMessage(), is("Username 'ABCD' too long"));
+        }
+    }
 }

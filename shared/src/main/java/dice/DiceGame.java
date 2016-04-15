@@ -9,6 +9,7 @@ public class DiceGame {
     private int currentTotal;
 
     private DiceGame(String username) {
+        this.username = username;
         currentTotal = 0;
         die = new Die();
     }
@@ -73,10 +74,23 @@ public class DiceGame {
         return score;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
     private static void validateUsername(String username)
             throws InvalidUsernameException {
-        if (username.length() != 3) {
-            throw new InvalidUsernameException();
+        final int VALID_LENGTH = 3;
+        if (username.length() == 0) {
+            throw new InvalidUsernameException("Blank username");
+        }
+        else if (username.length() < VALID_LENGTH) {
+            String message = "Username '" + username + "' too short";
+            throw new InvalidUsernameException(message);
+        }
+        else if (username.length() > VALID_LENGTH) {
+            String message = "Username '" + username + "' too long";
+            throw new InvalidUsernameException(message);
         }
     }
 }
