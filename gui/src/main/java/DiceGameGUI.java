@@ -1,4 +1,4 @@
-
+package main;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,20 +24,20 @@ public class DiceGameGUI extends javax.swing.JFrame {
     }
     
     private void initVar(){
-	      thisGame = DiceGame.create();
-         listLbl = new ArrayList<>();
-         listLbl.add(picDie1);
-   	   listLbl.add(picDie2);
-      	listLbl.add(picDie3);
-         listIcon = new ArrayList<>();
-         listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_1.png")));
-	      listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_2.png")));
-	      listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_3.png")));
-	      listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_4.png")));
-	      listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_5.png")));
-      	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png")));
-         listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die-a.gif")));
-	}
+        thisGame = DiceGame.create();
+        listLbl = new ArrayList<>();
+        listLbl.add(picDie1);
+        listLbl.add(picDie2);
+        listLbl.add(picDie3);
+        listIcon = new ArrayList<>();
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_1.png")));
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_2.png")));
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_3.png")));
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_4.png")));
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_5.png")));
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png")));
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die-a.gif")));
+}
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,7 +58,7 @@ public class DiceGameGUI extends javax.swing.JFrame {
         lblTotalScore = new javax.swing.JLabel();
         btnClose = new javax.swing.JButton();
         btnInstr = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblPlayerName = new javax.swing.JLabel();
         picDie1 = new javax.swing.JLabel();
         picDie2 = new javax.swing.JLabel();
         picDie3 = new javax.swing.JLabel();
@@ -116,16 +116,16 @@ public class DiceGameGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Player's Name");
+        lblPlayerName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPlayerName.setText("Player's Name");
 
-        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie1.setEnabled(false);
 
-        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie2.setEnabled(false);
 
-        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie3.setEnabled(false);
 
         btnReset.setText("RESET");
@@ -141,55 +141,50 @@ public class DiceGameGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnInstr))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(204, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblRollScore)
-                                    .addComponent(lblTotalScore))
-                                .addGap(107, 107, 107))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(138, 138, 138)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDiceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(109, 109, 109)))
-                        .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(picDie2)
-                .addGap(18, 18, 18)
-                .addComponent(picDie1)
-                .addGap(18, 18, 18)
-                .addComponent(picDie3)
-                .addGap(73, 73, 73))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(btnRoll, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblPlayerName))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(picDie2)
+                        .addGap(18, 18, 18)
+                        .addComponent(picDie1)
+                        .addGap(18, 18, 18)
+                        .addComponent(picDie3))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(157, 157, 157)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel5))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblRollScore)
+                                .addComponent(lblTotalScore))
+                            .addGap(78, 78, 78)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnInstr)
+                                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtDiceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnRoll, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblPlayerName)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(picDie2)
@@ -250,7 +245,7 @@ public class DiceGameGUI extends javax.swing.JFrame {
         try{rScore = thisGame.roll(diceNumber);} 
         catch (RollAfterGameOverException ex)
         {ex.getStackTrace();}
-        Integer tScore = thisGame.getCurrentTotal();
+        Integer tScore = thisGame.getScore();
         lblRollScore.setText(""+rScore.sum());
         lblTotalScore.setText(tScore.toString());
         txtDiceNumber.setEnabled(true);
@@ -315,7 +310,8 @@ public class DiceGameGUI extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null, "Invalid Input", "Invalid Input",
                JOptionPane.OK_OPTION);
        } while (name.length() == 0 || name.length() > 3);
-        
+       
+       lblPlayerName.setText(name);
     }//GEN-LAST:event_formWindowOpened
 
     private void btnInstrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstrActionPerformed
@@ -418,10 +414,10 @@ public class DiceGameGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnRoll;
     private javax.swing.JButton btnStop;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblPlayerName;
     private javax.swing.JLabel lblRollScore;
     private javax.swing.JLabel lblTotalScore;
     private javax.swing.JLabel picDie1;
