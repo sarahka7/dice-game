@@ -17,8 +17,8 @@ public abstract class StatsProcessor {
     }
 
     public static StatsProcessor create() {
-        Database db = Database.create("concrete");
-        return create("concrete", db);
+        Database db = Database.create("mock");
+        return create("mock", db);
     }
 
     public abstract String[] getPlayerList();
