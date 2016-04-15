@@ -1,4 +1,4 @@
-
+package main;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,20 +24,19 @@ public class DiceGameGUI extends javax.swing.JFrame {
     }
     
     private void initVar(){
-
-	    thisGame = DiceGame.create();
-       listLbl = new ArrayList<>();
-       listLbl.add(picDie1);
-	    listLbl.add(picDie2);
-	    listLbl.add(picDie3);
-       listIcon = new ArrayList<>();
-       listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_1.png")));
-	    listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_2.png")));
-	    listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_3.png")));
-	    listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_4.png")));
-	    listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_5.png")));
-	    listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png")));
-       listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die-a.gif")));
+	thisGame = new DiceGame();
+        listLbl = new ArrayList<>();
+        listLbl.add(picDie1);
+	listLbl.add(picDie2);
+	listLbl.add(picDie3);
+        listIcon = new ArrayList<>();
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_1.png")));
+	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_2.png")));
+	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_3.png")));
+	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_4.png")));
+	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_5.png")));
+	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png")));
+        listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die-a.gif")));
 	}
     
     /**
@@ -66,6 +65,11 @@ public class DiceGameGUI extends javax.swing.JFrame {
         btnReset = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         btnRoll.setText("ROLL");
         btnRoll.addActionListener(new java.awt.event.ActionListener() {
@@ -106,17 +110,22 @@ public class DiceGameGUI extends javax.swing.JFrame {
         });
 
         btnInstr.setText("Instruction");
+        btnInstr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInstrActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Player's Name");
 
-        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie1.setEnabled(false);
 
-        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie2.setEnabled(false);
 
-        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie3.setEnabled(false);
 
         btnReset.setText("RESET");
@@ -215,8 +224,7 @@ public class DiceGameGUI extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        thisGame = DiceGame.create();
-
+        thisGame = new DiceGame();
         for (int index = 0; index < listLbl.size(); index++)
         {
             listLbl.get(index).setEnabled(false);
@@ -296,6 +304,42 @@ public class DiceGameGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtDiceNumber.setText("");
     }//GEN-LAST:event_txtDiceNumberMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       String name;
+       do{
+           name = JOptionPane.showInputDialog(null, "What is your name?");
+           if (name == null)
+               System.exit(0);
+           if (name.length() == 0 || name.length() > 3)
+               JOptionPane.showMessageDialog(null, "Invalid Input", "Invalid Input",
+               JOptionPane.OK_OPTION);
+       } while (name.length() == 0 || name.length() > 3);
+        
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnInstrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstrActionPerformed
+        JOptionPane.showMessageDialog(null, 
+            "Goal of the game: \n"
+            + "The goal of the game is to accumulate a total of exactly 23,"
+            + " or get as close as you can without going over, by rolling\n"
+            + "1-3 dice an unlimited amount of times. You will have the"
+            + "choice to use 1, 2, or 3 dice to increase your\n "
+            + "overall total and achieve the goal of 23.\n"
+            + "\n"
+            + "Rules of the Game:\n"
+            + "1. The player must enter three letters, generally "
+            + "initials, for their game name.\n" 
+            +"2.The player can choose the number of dice to use per roll.\n" 
+            +"3.The player must roll the chosen number of dice and add the "
+                    + "die faces to get a total.\n" 
+            +"    For example, if you roll a 5, 6, and 3, your total will be 14.\n" 
+            +"4.The player will have the option to stop there and record "
+            + "their score or they can roll again to increase their total.\n" 
+            +"5.The player can roll as many times as they want, but as soon "
+            + "as their total score equals or exceeds 23, the game is over."
+            ,"Instruction",JOptionPane.OK_OPTION,listIcon.get(5));
+    }//GEN-LAST:event_btnInstrActionPerformed
 
     /**
      * @param args the command line arguments
