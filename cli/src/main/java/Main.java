@@ -126,8 +126,26 @@ public class Main {
     }
 
     public static void leaderboard() {
-        //Need to finish
-        System.out.println("\nUnder Construction, come back soon!");
+        StatsProcessor stats = StatsProcessor.create();
+        LeaderboardEntry[] leaders = stats.getLeaderboard();
+        
+        //Header
+        System.out.println("\n- High Scores -");
+        System.out.printf("%-20s %-20s %-20s%n",
+                          "Rank",
+                          "Score",
+                          "Name");
+            
+        //Data
+        int rank = 1;
+        for (LeaderboardEntry leader : leaders) {
+            System.out.printf("%-20d %-20s %-20s%n",
+                              rank,
+                              leader.getHighestScore(),
+                              leader.getPlayerName());
+            
+            rank++;
+        }
     }
 
     public static void statistics() {
@@ -191,19 +209,19 @@ public class Main {
 
     public static void displayStatistics(StatsData stats) {
         //Header
-        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n",
-            "Total Rolls",
-            "Avg Rolls Per Game",
-            "Cumulative Score",
-            "Avg Score",
-            "Avg # Of Dice Used");
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s%n",
+                          "Total Rolls",
+                          "Avg Rolls Per Game",
+                          "Cumulative Score",
+                          "Avg Score",
+                          "Avg # Of Dice Used");
         //Data
-        System.out.printf("%-20s %-20s %-20s %-20s %-20s %n",
-            stats.getTotalRolls(),
-            stats.getAvgRollsPerGame(),
-            stats.getCumulativeScore(),
-            stats.getAvgScore(),
-            stats.getAvgNumDiceUsed());
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s%n",
+                          stats.getTotalRolls(),
+                          stats.getAvgRollsPerGame(),
+                          stats.getCumulativeScore(),
+                          stats.getAvgScore(),
+                          stats.getAvgNumDiceUsed());
     }
 
     public static int changeDice() {
