@@ -112,7 +112,7 @@ class ConcreteStatsProcessor extends StatsProcessor {
     }
 
     public StatsData getPlayerStats(String playerName) {
-        RollRecord[] records = database.getAllRecords();
+        RollRecord[] records = database.getRecordsForUser(playerName);
 
         // Pull data out of records here
 
