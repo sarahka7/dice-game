@@ -49,6 +49,24 @@ class MockStatsProcessor extends StatsProcessor {
                 .avgNumDiceUsed(2.1)
                 .build();
         }
+        else if (playerName.equals("DEF")) {
+            stats = new StatsData.Builder()
+                .totalRolls(200)
+                .avgRollsPerGame(2.2)
+                .cumulativeScore(4000)
+                .avgScore(19.0)
+                .avgNumDiceUsed(1.8)
+                .build();
+        }
+        else if (playerName.equals("GHI")) {
+            stats = new StatsData.Builder()
+                .totalRolls(300)
+                .avgRollsPerGame(4.0)
+                .cumulativeScore(5000)
+                .avgScore(22.1)
+                .avgNumDiceUsed(1.2)
+                .build();
+        }
         else {
             // defaults
             stats = new StatsData.Builder().build();
