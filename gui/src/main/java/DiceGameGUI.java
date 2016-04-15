@@ -238,17 +238,21 @@ public class DiceGameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
-// TODO add your handling code here:
+
         int diceNumber = Integer.parseInt(txtDiceNumber.getText());
         RollResult rScore = new RollResult();
+        Integer tScore;
         try{rScore = thisGame.roll(diceNumber);} 
         catch (RollAfterGameOverException ex)
         {ex.getStackTrace();}
-        Integer tScore = thisGame.getScore();
+
+        tScore = thisGame.getScore();
+        
         lblRollScore.setText(""+rScore.sum());
         lblTotalScore.setText(tScore.toString());
         txtDiceNumber.setEnabled(true);
         
+        //Changing picture according to the dice value
         for (int index = 0; index < rScore.rollCount(); index++)
         {
             int dieValue = rScore.rollsArray()[index];
