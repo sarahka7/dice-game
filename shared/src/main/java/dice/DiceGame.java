@@ -2,13 +2,34 @@ package dice;
 
 
 public class DiceGame {
-    private Die die;
-    private int currentTotal;
     private static final int MAX_TOTAL = 23;
 
-    public DiceGame() {
+    private Die die;
+    private String username;
+    private int currentTotal;
+
+    private DiceGame(String username) {
+        this.username = username;
         currentTotal = 0;
         die = new Die();
+    }
+
+    public static DiceGame create(String username)
+            throws InvalidUsernameException {
+        validateUsername(username);
+        return new DiceGame(username);
+    }
+
+    public static DiceGame create() {
+        DiceGame game;
+        try {
+            game = create("XXX");
+        }
+        catch (InvalidUsernameException e) {
+            game = null;
+        }
+
+        return game;
     }
 
     public RollResult roll(int numDice) throws RollAfterGameOverException {
@@ -51,5 +72,25 @@ public class DiceGame {
         }
 
         return score;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    private static void validateUsername(String username)
+            throws InvalidUsernameException {
+        final int VALID_LENGTH = 3;
+        if (username.length() == 0) {
+            throw new InvalidUsernameException("Blank username");
+        }
+        else if (username.length() < VALID_LENGTH) {
+            String message = "Username '" + username + "' too short";
+            throw new InvalidUsernameException(message);
+        }
+        else if (username.length() > VALID_LENGTH) {
+            String message = "Username '" + username + "' too long";
+            throw new InvalidUsernameException(message);
+        }
     }
 }
