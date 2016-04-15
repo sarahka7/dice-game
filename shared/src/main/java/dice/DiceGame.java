@@ -2,13 +2,33 @@ package dice;
 
 
 public class DiceGame {
-    private Die die;
-    private int currentTotal;
     private static final int MAX_TOTAL = 23;
 
-    public DiceGame() {
+    private Die die;
+    private String username;
+    private int currentTotal;
+
+    private DiceGame(String username) {
         currentTotal = 0;
         die = new Die();
+    }
+
+    public static DiceGame create(String username)
+            throws InvalidUsernameException {
+        validateUsername(username);
+        return new DiceGame(username);
+    }
+
+    public static DiceGame create() {
+        DiceGame game;
+        try {
+            game = create("XXX");
+        }
+        catch (InvalidUsernameException e) {
+            game = null;
+        }
+
+        return game;
     }
 
     public RollResult roll(int numDice) throws RollAfterGameOverException {
@@ -51,5 +71,12 @@ public class DiceGame {
         }
 
         return score;
+    }
+
+    private static void validateUsername(String username)
+            throws InvalidUsernameException {
+        if (username.length() != 3) {
+            throw new InvalidUsernameException();
+        }
     }
 }

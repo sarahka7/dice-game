@@ -57,7 +57,8 @@ public class Main {
     }
     
     public static void play() {
-         DiceGame game = new DiceGame();
+         DiceGame game = DiceGame.create();
+
          Scanner scan = new Scanner(System.in);
          
          int input = 0;

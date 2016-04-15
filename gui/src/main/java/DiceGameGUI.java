@@ -22,7 +22,8 @@ public class DiceGameGUI extends javax.swing.JFrame {
     }
     
     private void initVar(){
-	     thisGame = new DiceGame();
+	    thisGame = DiceGame.create();
+
         listLbl = new ArrayList<>();
         listLbl.add(picDie1);
 	     listLbl.add(picDie2);
@@ -206,7 +207,8 @@ public class DiceGameGUI extends javax.swing.JFrame {
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
         // TODO add your handling code here:
-        thisGame = new DiceGame();
+        thisGame = DiceGame.create();
+
         for (int index = 0; index < listLbl.size(); index++)
         {
             listLbl.get(index).setEnabled(false);
