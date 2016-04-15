@@ -1,3 +1,5 @@
+package main;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,15 +20,15 @@ public class DiceGameGUI extends javax.swing.JFrame {
      */
     public DiceGameGUI() {
         initComponents();
-		   initVar();
+        initVar();
     }
     
     private void initVar(){
-	     thisGame = new DiceGame();
+	thisGame = new DiceGame();
         listLbl = new ArrayList<>();
         listLbl.add(picDie1);
-	     listLbl.add(picDie2);
-	     listLbl.add(picDie3);
+	listLbl.add(picDie2);
+	listLbl.add(picDie3);
         listIcon = new ArrayList<>();
         listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_1.png")));
 	listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_2.png")));
@@ -81,6 +83,12 @@ public class DiceGameGUI extends javax.swing.JFrame {
 
         jLabel4.setText("Number of Dice:");
 
+        txtDiceNumber.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtDiceNumberMouseClicked(evt);
+            }
+        });
+
         jLabel5.setText("Roll Score:");
 
         jLabel6.setText("Total Score:");
@@ -101,13 +109,13 @@ public class DiceGameGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Player's Name");
 
-        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie1.setEnabled(false);
 
-        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie2.setEnabled(false);
 
-        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie3.setEnabled(false);
 
         btnReset.setText("RESET");
@@ -282,10 +290,37 @@ public class DiceGameGUI extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    private void txtDiceNumberMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDiceNumberMouseClicked
+        // TODO add your handling code here:
+        txtDiceNumber.setText("");
+    }//GEN-LAST:event_txtDiceNumberMouseClicked
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+         /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DiceGameGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DiceGameGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DiceGameGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DiceGameGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
