@@ -40,7 +40,7 @@ public class DiceGameGUI extends javax.swing.JFrame {
         listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_5.png")));
         listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png")));
         listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die-a.gif")));
-        data = Database.create("mock");
+        data = Database.create("mock", "dummyPath");
         stat = StatsProcessor.create("mock",data);
 }
     
