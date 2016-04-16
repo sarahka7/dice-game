@@ -32,7 +32,7 @@ class MockDatabase extends Database {
         RollRecord recordA = new RollRecord("TAP", 0, 3, 13, 13);
         RollRecord recordB = new RollRecord("TAP", 0, 1, 3, 16);
         RollRecord recordC = new RollRecord("TAP", 0, 1, 6, 22);
-        RollRecord recordD = new RollRecord("CHS", 0, 3, 18, 18);
+        RollRecord recordD = new RollRecord("CHS", 1, 3, 18, 18);
 
         RollRecord[] array = {recordA, recordB, recordC, recordD};
 
@@ -50,7 +50,7 @@ class MockDatabase extends Database {
             return array;
         }
         else {
-            RollRecord recordD = new RollRecord("CHS", 0, 3, 18, 18);
+            RollRecord recordD = new RollRecord("CHS", 1, 3, 18, 18);
 
             RollRecord[] array = {recordD};
             return array;

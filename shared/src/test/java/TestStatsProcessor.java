@@ -23,4 +23,15 @@ public class TestStatsProcessor {
         assertThat(playerList[0], equalTo("TAP"));
         assertThat(playerList[1], equalTo("CHS"));
     }
+
+    @Test
+    public void getAllStats() {
+        StatsData stats = proc.getAllStats();
+
+        assertThat(stats.getTotalRolls(), equalTo(4));
+        assertThat(stats.getAvgRollsPerGame(), equalTo(2.0));
+        assertThat(stats.getCumulativeScore(), equalTo(40));
+        assertThat(stats.getAvgScore(), equalTo(20.0));
+        assertThat(stats.getAvgNumDiceUsed(), equalTo(2.0));
+    }
 }
