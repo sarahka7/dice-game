@@ -128,9 +128,15 @@ class ConcreteStatsProcessor extends StatsProcessor {
 
         // Pull data out of records here
 
-        return new StatsData.Builder().build();
+        return computeStats(records);
     }
+
     public StatsData getAllStats() {
+        RollRecord[] records = database.getAllRecords();
+        return computeStats(records);
+    }
+
+    private StatsData computeStats(RollRecord[] records) {
         return new StatsData.Builder().build();
     }
 }
