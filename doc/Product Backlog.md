@@ -1,20 +1,13 @@
-
-## Product Backlog ##
-
-1. As a player I want to type in my initials so I can be represented in the leader board.
-
-2. As a player I want to choose how many dice to roll so that I can get close to my goal of 23, without going over.
-
-3. As a player I want to roll so that my dice can be added in the game and get closer to the score of 23.
-
-4. As a score keeper I want to set the score so that I can declare a win or loss when reaching or exceeding 23.
-
-5. As a score keeper I want to get the score so that I can provide the values to the leaderboard.
-
-6. As a player I want to choose to not roll so that I can maintain my score before going over the score of 23. 
-
-7. As a player I want to view the leader board so that I can see mine and others' overall scores.
-
-8. As a player I want to view my personal statistics so that I can see my average number of rolls per turn.
-
-9. As a player I want to view others' statistics so that I can compare my average number of rolls per turn with theirs.
+| ID | Priority | User Type    | Story                                                                                                    | Estimate (Days) | Sprint | Dependencies | Status |
+|----|----------|--------------|----------------------------------------------------------------------------------------------------------|-----------------|--------|--------------|--------|
+| 1  | 1        | Player       | I want to have a console interface so I can play the game from the command line                          | 0.5             | Week 2 |              | Done   |
+| 2  | 2        | Player       | I want to choose how many dice to roll so that I can get close to my goal of 23, without going over.     | 0.5             | Week 2 |              | Done   |
+| 3  | 3        | Player       | I want to roll so that my dice can be added in the game and get closer to the score of 23.               | 0.5             | Week 2 |              | Done   |
+| 4  | 4        | Player       | I want to choose to not roll so that I can maintain my score before going over the score of 23.          | 0.5             | Week 2 |              | Done   |
+| 5  | 5        | Score Keeper | I want to set the score so that I can declare a win or loss when reaching or exceeding 23.               | 2               | Week 2 |              | Done   |
+| 6  | 6        | Score Keeper | I want to get the score so that I can provide the values to the current game and leaderboard.            | 1               | Week 2 | ID: 5        | Done   |
+| 7  | 7        | Player       | I want to type in my initials so I can be represented in the leader board.                               | 1               | Week 3 |              |        |
+| 8  | 8        | Player       | I want to view the leader board so that I can see mine and others' overall scores.                       | 2               | Week 3 | ID: 7        |        |
+| 9  | 9        | Player       | I want to view my personal statistics so that I can see my average number of rolls per turn.             | 2               | Week 3 | ID: 7        |        |
+| 10 | 10       | Player       | I want to view others' statistics so that I can compare my average number of rolls per turn with theirs. | 2               | Week 3 | ID: 7        |        |
+| 11 | 11       | Player       | I want to have a graphical user interface so that I can easily play the game.                            | 2               | Week 3 |              |        |

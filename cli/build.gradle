@@ -1,6 +1,12 @@
 apply plugin: 'application'
+
 mainClassName = "Main"
 
 dependencies {
     compile project(':shared')
 }
+
+run {
+    standardInput = System.in
+}
+

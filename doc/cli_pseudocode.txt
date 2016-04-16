@@ -1,0 +1,63 @@
+//Start on Main Menu background of GUI
+
+- Welcome statement "Welcome to Three to Twenty Three: A simple dice game inspired by Blackjack. Select an option below: "
+- (GUI has "HOW TO PLAY" button, "PLAY" button, "SCOREBOARD" button, "STATS" button)
+- If user clicks "HOW TO PLAY" button, display a graphic or text pop-up that shows instructions, then "ok" btn to exit instructions
+- If user clicks "SCOREBOARD," button, displays this info, then "ok" btn to exit back to main menu
+- If user clicks "STATS," button, displays stats from previous players/games, then "ok" btn to exit back to main menu
+- If user clicks "PLAY," button:
+      "Enter your initials, 3 letters only" // only allow letters, change all input to upper for consistency, limit 3 char
+      if non-valid input, "ok" button stays grayed out
+      else "ok" button clickable  Only option is to click "ok" at this point.
+      [scoreboard] gets user initials and score of 0 // to be updated later
+      
+      when "ok" button clicked, go to new backdrop //now they're in the game-play mode
+      
+      //do -while loop
+      do 
+      {
+      if (user does not click "end game") && (score < 23)  //have "end game" btn to side or corner of screen
+        
+        [value] = 23 - [total];
+        Display "you need _[value]_ more to get to 23" // value is 23-current sum, this is optional, but helpful to player. Show value in green. 
+        Thinking of this as a text box in corner of screen that updates at start of each round.
+        
+        if "end game" button clicked - exits loop
+            display: "end game and save current score? // yes/no buttons appear
+            if user clicks "YES" 
+            adds user's intials to [scoreboard]
+            display [personal stats for the entire game] -> click "ok" to exit the stats window
+            return to main menu screen
+               if user clicks "NO" 
+                go to [dice prompt- line 34]
+        
+        [Dice Prompt]: "Select number of die for this round: 1, 2, or 3"
+        
+        User clicks on the image of 1 dice, 2 dice, or 3 dice. // easier to click on a graphic than have to type in a number each time
+          if 1 dice selected- [stub] - //roll random add show [total]
+            [numDice += 1]
+          if 2 dice selected- [stub] - //roll random add show [total]
+            [numDice += 2]
+          if 3 dice selected- [stub] - //roll random add show [total]
+            [numDice += 3] 
+          
+          [roundsCount] += 1; //tracks rounds
+      }    
+      while (score < 23) 
+      
+      if (score == 23)
+      {
+        display a [winning background]
+        display "CONGRATULATIONS! YOU REACHED 23"! 
+        adds user's intials to [scoreboard]
+        display [personal stats for the entire game] -> click "ok" to exit the stats window
+        return to main menu 
+      }
+      
+      if (score > 23) 
+      {
+        display a [losing background]
+        display "Uh-Oh you went over 23. Try again!" 
+        display [personal stats for the game] -> click "ok" to exit stats window
+        return to main menu
+      }
