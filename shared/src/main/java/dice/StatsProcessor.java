@@ -17,7 +17,7 @@ public abstract class StatsProcessor {
     }
 
     public static StatsProcessor create() {
-        Database db = Database.create("mock");
+        Database db = Database.create("mock", "dummyFilename");
         return create("mock", db);
     }
 
