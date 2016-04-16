@@ -11,7 +11,7 @@ public class TestStatsProcessor {
 
     @Before
     public void setUp() {
-        Database db = Database.create("mock");
+        Database db = Database.create("mock", "dummyFilename");
         proc = StatsProcessor.create("concrete", db);
     }
 

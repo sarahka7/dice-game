@@ -1,13 +1,19 @@
 package dice;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
+import com.opencsv.CSVReader;
+
 
 public abstract class Database {
-    public static Database create(String type) {
+    public static Database create(String type, String filename) {
         if (type.equals("mock")) {
             return new MockDatabase();
         }
         else {
-            return new ConcreteDatabase();
+            return new ConcreteDatabase(filename);
         }
     }
 
@@ -49,11 +55,78 @@ class MockDatabase extends Database {
 }
 
 class ConcreteDatabase extends Database {
-    public RollRecord[] getAllRecords() {
-        return new RollRecord[1];
+    private final String filename;
+
+    public ConcreteDatabase(String filename) {
+        this.filename = filename;
     }
 
-    public RollRecord[] getRecordsForUser(String userId) {
-        return new RollRecord[1];
+    private CSVReader getReader() {
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(filename);
+        }
+        catch(IOException e) {
+            // TODO: handle properly
+            System.out.println("Error opening file");
+        }
+
+        return new CSVReader(fileReader);
+    }
+
+    public RollRecord[] getAllRecords() {
+
+        String[] line;
+
+        List<RollRecord> records = new ArrayList<RollRecord>();
+
+        CSVReader reader = getReader();
+
+        try {
+            while ((line = reader.readNext()) != null) {
+                String userId = line[0];
+                int gameId = Integer.parseInt(line[1]);
+                int numDice = Integer.parseInt(line[2]);
+                int rollValue = Integer.parseInt(line[3]);
+                int score = Integer.parseInt(line[4]);
+                RollRecord record = new RollRecord(userId, gameId, numDice,
+                                                   rollValue, score);
+                records.add(record);
+            }
+        }
+        catch (IOException e) {
+            // TODO: handle exception
+        }
+
+        return records.toArray(new RollRecord[records.size()]);
+    }
+
+    public RollRecord[] getRecordsForUser(String compUserId) {
+        String[] line;
+
+        List<RollRecord> records = new ArrayList<RollRecord>();
+
+        CSVReader reader = getReader();
+
+        try {
+            while ((line = reader.readNext()) != null) {
+                String userId = line[0];
+
+                if (userId.equals(compUserId)) {
+                    int gameId = Integer.parseInt(line[1]);
+                    int numDice = Integer.parseInt(line[2]);
+                    int rollValue = Integer.parseInt(line[3]);
+                    int score = Integer.parseInt(line[4]);
+                    RollRecord record = new RollRecord(userId, gameId, numDice,
+                                                       rollValue, score);
+                    records.add(record);
+                }
+            }
+        }
+        catch (IOException e) {
+            // TODO: handle exception
+        }
+
+        return records.toArray(new RollRecord[records.size()]);
     }
 }
