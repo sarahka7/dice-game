@@ -1,10 +1,12 @@
 package dice;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
@@ -69,15 +71,41 @@ class ConcreteDatabase extends Database {
 
     public RollRecord[] getAllRecords() {
 
-        String[] line;
+        List<RollRecord> records = new ArrayList<RollRecord>();
+
+        CSVReader reader = getReader();
+
+        Iterator<String[]> iter = reader.iterator();
+
+        while (iter.hasNext()) {
+            String[] line = iter.next();
+            String userId = line[0];
+            int gameId = Integer.parseInt(line[1]);
+            int numDice = Integer.parseInt(line[2]);
+            int rollValue = Integer.parseInt(line[3]);
+            int score = Integer.parseInt(line[4]);
+            RollRecord record = new RollRecord(userId, gameId, numDice,
+                                               rollValue, score);
+            records.add(record);
+        }
+
+        return records.toArray(new RollRecord[records.size()]);
+    }
+
+    public RollRecord[] getRecordsForUser(String compUserId) {
 
         List<RollRecord> records = new ArrayList<RollRecord>();
 
         CSVReader reader = getReader();
 
-        try {
-            while ((line = reader.readNext()) != null) {
-                String userId = line[0];
+        Iterator<String[]> iter = reader.iterator();
+
+        while (iter.hasNext()) {
+            String[] line = iter.next();
+
+            String userId = line[0];
+
+            if (userId.equals(compUserId)) {
                 int gameId = Integer.parseInt(line[1]);
                 int numDice = Integer.parseInt(line[2]);
                 int rollValue = Integer.parseInt(line[3]);
@@ -86,38 +114,6 @@ class ConcreteDatabase extends Database {
                                                    rollValue, score);
                 records.add(record);
             }
-        }
-        catch (IOException e) {
-            // TODO: handle exception
-        }
-
-        return records.toArray(new RollRecord[records.size()]);
-    }
-
-    public RollRecord[] getRecordsForUser(String compUserId) {
-        String[] line;
-
-        List<RollRecord> records = new ArrayList<RollRecord>();
-
-        CSVReader reader = getReader();
-
-        try {
-            while ((line = reader.readNext()) != null) {
-                String userId = line[0];
-
-                if (userId.equals(compUserId)) {
-                    int gameId = Integer.parseInt(line[1]);
-                    int numDice = Integer.parseInt(line[2]);
-                    int rollValue = Integer.parseInt(line[3]);
-                    int score = Integer.parseInt(line[4]);
-                    RollRecord record = new RollRecord(userId, gameId, numDice,
-                                                       rollValue, score);
-                    records.add(record);
-                }
-            }
-        }
-        catch (IOException e) {
-            // TODO: handle exception
         }
 
         return records.toArray(new RollRecord[records.size()]);
@@ -133,11 +129,6 @@ class ConcreteDatabase extends Database {
             Integer.toString(roll.getScore())
         };
 
-        System.out.println("Len: " + line.length);
-        for (String n : line) {
-            System.out.println(n);
-        }
-
         writer.writeNext(line);
         try {
             writer.close();
@@ -147,6 +138,15 @@ class ConcreteDatabase extends Database {
     }
 
     private CSVReader getReader() {
+        // ensure file exists
+        try {
+            File f = new File(filename);
+            f.createNewFile();
+        }
+        catch (IOException e) {
+            System.out.println("Error creating file: " + filename);
+        }
+
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(filename);
