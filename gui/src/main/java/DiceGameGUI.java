@@ -1,4 +1,4 @@
-
+package main;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,8 +7,11 @@
  */
 
 import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.util.*;
 import dice.*;
+import java.awt.Color;
 /**
  *
  * @author Nguyen
@@ -37,6 +40,8 @@ public class DiceGameGUI extends javax.swing.JFrame {
         listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_5.png")));
         listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png")));
         listIcon.add(new javax.swing.ImageIcon(getClass().getResource("die-a.gif")));
+        data = Database.create("mock");
+        stat = StatsProcessor.create("mock",data);
 }
     
     /**
@@ -48,6 +53,7 @@ public class DiceGameGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         btnRoll = new javax.swing.JButton();
         btnStop = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -63,6 +69,9 @@ public class DiceGameGUI extends javax.swing.JFrame {
         picDie2 = new javax.swing.JLabel();
         picDie3 = new javax.swing.JLabel();
         btnReset = new javax.swing.JButton();
+        btnPStat = new javax.swing.JButton();
+        btnOStat = new javax.swing.JButton();
+        btnOStat1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -70,6 +79,8 @@ public class DiceGameGUI extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 204));
 
         btnRoll.setText("ROLL");
         btnRoll.addActionListener(new java.awt.event.ActionListener() {
@@ -119,13 +130,13 @@ public class DiceGameGUI extends javax.swing.JFrame {
         lblPlayerName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblPlayerName.setText("Player's Name");
 
-        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie1.setEnabled(false);
 
-        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie2.setEnabled(false);
 
-        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
+        picDie3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/die_face_6.png"))); // NOI18N
         picDie3.setEnabled(false);
 
         btnReset.setText("RESET");
@@ -135,82 +146,136 @@ public class DiceGameGUI extends javax.swing.JFrame {
             }
         });
 
+        btnPStat.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        btnPStat.setText("PERSONAL STAT");
+        btnPStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPStatActionPerformed(evt);
+            }
+        });
+
+        btnOStat.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        btnOStat.setText("OVERALL STAT");
+        btnOStat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOStatActionPerformed(evt);
+            }
+        });
+
+        btnOStat1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        btnOStat1.setText("LEADER BOARD");
+        btnOStat1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOStat1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(51, 51, 51)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtDiceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel5))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(lblRollScore)
+                                            .addComponent(lblTotalScore))))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(picDie2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(picDie1)))
+                            .addGap(18, 18, 18)
+                            .addComponent(picDie3))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(304, 304, 304)
+                            .addComponent(btnInstr))
+                        .addComponent(lblPlayerName)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(8, 8, 8)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(btnPStat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnOStat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnOStat1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addComponent(btnRoll, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblPlayerName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnInstr)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(picDie2)
+                    .addComponent(picDie3)
+                    .addComponent(picDie1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtDiceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblRollScore))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblTotalScore))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRoll, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPStat, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOStat, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOStat1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnClose)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblPlayerName))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(picDie2)
-                        .addGap(18, 18, 18)
-                        .addComponent(picDie1)
-                        .addGap(18, 18, 18)
-                        .addComponent(picDie3))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(157, 157, 157)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel5))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblRollScore)
-                                .addComponent(lblTotalScore))
-                            .addGap(78, 78, 78)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnInstr)
-                                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(22, 22, 22)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtDiceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnRoll, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblPlayerName)
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(picDie2)
-                    .addComponent(picDie3)
-                    .addComponent(picDie1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtDiceNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRoll, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(lblRollScore))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(lblTotalScore))
-                    .addComponent(btnClose))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnInstr)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -226,6 +291,7 @@ public class DiceGameGUI extends javax.swing.JFrame {
         }
         lblRollScore.setText("0");
         lblTotalScore.setText("0");
+        txtDiceNumber.setText("");
         btnRoll.setEnabled(true);
         picDie1.setIcon(new javax.swing.ImageIcon(getClass().getResource("die_face_6.png"))); // NOI18N
         picDie1.setEnabled(false);
@@ -238,21 +304,17 @@ public class DiceGameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
-
+// TODO add your handling code here:
         int diceNumber = Integer.parseInt(txtDiceNumber.getText());
         RollResult rScore = new RollResult();
-        Integer tScore;
         try{rScore = thisGame.roll(diceNumber);} 
         catch (RollAfterGameOverException ex)
         {ex.getStackTrace();}
-
-        tScore = thisGame.getScore();
-        
+        Integer tScore = thisGame.getScore();
         lblRollScore.setText(""+rScore.sum());
         lblTotalScore.setText(tScore.toString());
         txtDiceNumber.setEnabled(true);
         
-        //Changing picture according to the dice value
         for (int index = 0; index < rScore.rollCount(); index++)
         {
             int dieValue = rScore.rollsArray()[index];
@@ -306,13 +368,16 @@ public class DiceGameGUI extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        String name;
        do{
-           name = JOptionPane.showInputDialog(null, "What is your name?");
+           name = JOptionPane.showInputDialog(null, "What is your name?").toUpperCase();
            if (name == null)
                System.exit(0);
-           if (name.length() == 0 || name.length() > 3)
+           if (name.length() != 3)
                JOptionPane.showMessageDialog(null, "Invalid Input", "Invalid Input",
                JOptionPane.OK_OPTION);
        } while (name.length() == 0 || name.length() > 3);
+       
+       try{thisGame = DiceGame.create(name);}
+        catch(InvalidUsernameException ex) {ex.printStackTrace();}
        
        lblPlayerName.setText(name);
     }//GEN-LAST:event_formWindowOpened
@@ -327,7 +392,7 @@ public class DiceGameGUI extends javax.swing.JFrame {
             + "overall total and achieve the goal of 23.\n"
             + "\n"
             + "Rules of the Game:\n"
-            + "1. The player must enter three letters, generally "
+            + "1.The player must enter three letters, generally "
             + "initials, for their game name.\n" 
             +"2.The player can choose the number of dice to use per roll.\n" 
             +"3.The player must roll the chosen number of dice and add the "
@@ -339,6 +404,21 @@ public class DiceGameGUI extends javax.swing.JFrame {
             + "as their total score equals or exceeds 23, the game is over."
             ,"Instruction",JOptionPane.OK_OPTION,listIcon.get(5));
     }//GEN-LAST:event_btnInstrActionPerformed
+
+    private void btnPStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPStatActionPerformed
+       displayUserStat(thisGame.getUsername());
+    }//GEN-LAST:event_btnPStatActionPerformed
+
+    private void btnOStatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOStatActionPerformed
+       String[] playerList = stat.getPlayerList();
+       String targetUser = (String)JOptionPane.showInputDialog(null, "Choose a player", 
+               "Player List",JOptionPane.PLAIN_MESSAGE,null,playerList,playerList[0]);
+       displayUserStat(targetUser);
+    }//GEN-LAST:event_btnOStatActionPerformed
+
+    private void btnOStat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOStat1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOStat1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -403,6 +483,30 @@ public class DiceGameGUI extends javax.swing.JFrame {
         }        
     }
     
+    public void displayUserStat(String username)
+    {
+       StatsData thisPlayerStat = stat.getPlayerStats(username);
+       JTextArea txaStat = new JTextArea();
+       txaStat.setEditable(false);
+       txaStat.setFont(new Font("Sans-Serif", Font.PLAIN, 10));
+       txaStat.setText(
+               "Cumulative score:"+"                "
+                       + thisPlayerStat.getCumulativeScore() + "\n"
+              +"Average score:"+"                   "
+                       + thisPlayerStat.getAvgScore() + "\n"
+              +"Average number of dice used:"+"     " 
+                       + thisPlayerStat.getAvgNumDiceUsed() +"\n"
+              +"Total Roll:"+"                      "
+                       + thisPlayerStat.getTotalRolls() + "\n"
+              +"Average rolls per game:"+"          "
+                       + thisPlayerStat.getAvgRollsPerGame() + "\n");
+       txaStat.setBackground(Color.white);
+       txaStat.setForeground(Color.black);
+       JScrollPane spnStat = new JScrollPane(txaStat);
+       spnStat.setPreferredSize(new Dimension(350, 150));
+       JOptionPane.showMessageDialog(this, spnStat, "Your Statistic",JOptionPane.PLAIN_MESSAGE,null);
+    }
+    
     public void dieAnimation(int diceNumber)
     {
         for (int index = 0; index < diceNumber ; index++)
@@ -414,12 +518,16 @@ public class DiceGameGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnInstr;
+    private javax.swing.JButton btnOStat;
+    private javax.swing.JButton btnOStat1;
+    private javax.swing.JButton btnPStat;
     private javax.swing.JButton btnReset;
     private javax.swing.JButton btnRoll;
     private javax.swing.JButton btnStop;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblPlayerName;
     private javax.swing.JLabel lblRollScore;
     private javax.swing.JLabel lblTotalScore;
@@ -431,4 +539,6 @@ public class DiceGameGUI extends javax.swing.JFrame {
     private DiceGame thisGame;
     private List<JLabel> listLbl;
     private List<Icon> listIcon;
+    private Database data;
+    private StatsProcessor stat;
 }
