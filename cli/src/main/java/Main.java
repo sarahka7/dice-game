@@ -9,16 +9,18 @@ public class Main {
     public static void startScreen() {
          Scanner scan = new Scanner(System.in);
          System.out.print("\nWelcome to Three to Twenty Three: ");
-         System.out.println("A simple dice game inspired by Blackjack.\n");
+         System.out.println("A simple dice game inspired by Blackjack.");
          
          int input = 0;
          boolean continueGame = true;
          
          do {
-            System.out.println("Select an option below: ");
+            System.out.println("\nSelect an option below: ");
             System.out.println("1. How to play");
             System.out.println("2. Play");
-            System.out.println("3. Quit");
+            System.out.println("3. Leaderboard");
+            System.out.println("4. Statistics");
+            System.out.println("5. Quit");
             
             input = getIntInput();
             
@@ -30,18 +32,24 @@ public class Main {
                   play();
                   break;
                case 3:
+                  leaderboard();
+                  break;
+               case 4:
+                  statistics();
+                  break;
+               case 5:
                   System.out.println("\nThanks for playing!");
                   continueGame = false;
                   break;
                default:
-                  System.out.println("\nError: Invalid option, try again!\n");
+                  System.out.println("\nError: Invalid option, try again!");
                   break;
             }
          } while (continueGame);
     }
     
     public static void howToPlay() {
-         System.out.println("\n- HOW TO PLAY -");
+         System.out.println("\n- How to play -");
          
          System.out.print("The goal of the game is to reach a total of ");
          System.out.println("23, or get as close as you can without going over.\n");
@@ -96,7 +104,7 @@ public class Main {
                   continueGame = false;
                   break;
                default:
-                  System.out.println("Error: Invalid option, try again!\n");
+                  System.out.println("\nError: Invalid option, try again!");
                   break;
             }
             
@@ -106,7 +114,88 @@ public class Main {
          } while (continueGame);
          
          System.out.print("\nGame over! With a total of " + game.getCurrentTotal());
-         System.out.println(", your final score is: " + game.getScore() + "\n");
+         System.out.println(", your final score is: " + game.getScore());
+    }
+    
+    public static void leaderboard() {
+      //Need to finish
+      System.out.println("\nUnder Construction, come back soon!");
+    }
+    
+    public static void statistics() {
+       boolean invalidInput = false;
+       int input;
+       
+       do {
+         System.out.println("\nSelect an option below:");
+         System.out.println("1. Player Statistics");
+         System.out.println("2. All Statistics");
+         
+         input = getIntInput();
+         
+         switch(input) {
+            case 1:
+               playerStatistics();
+               break;
+            case 2:
+               allStatistics();
+               break;
+            default:
+               System.out.println("\nError: Invalid option, try again!");
+               invalidInput = true;
+               break;
+         }
+      } while (invalidInput);
+    }
+    
+    public static void playerStatistics() {
+      StatsProcessor stats = StatsProcessor.create();
+      String[] playerNames = stats.getPlayerList();
+      int input;
+      
+      //Select from a list of player names
+      do {
+         System.out.println("\nSelect a player:");
+         for (int index = 0; index < playerNames.length; index++) {
+            System.out.println((index + 1) + ". " + playerNames[index]);
+         }
+         
+         input = getIntInput() - 1;
+         
+      } while (!validIntInput(input, 0, (playerNames.length - 1)));
+      
+      //Select chosen player
+      StatsData playerStats = stats.getPlayerStats(playerNames[input]);
+      
+      //Display player's statistics
+      System.out.println("\n- Statistics for " + playerNames[input] + "-");
+      displayStatistics(playerStats);
+    }
+    
+    public static void allStatistics() {
+      StatsProcessor stats = StatsProcessor.create();
+      StatsData allStats = stats.getAllStats();
+      
+      //Display aggregate statistics
+      System.out.println("\n- All Statistics -");
+      displayStatistics(allStats);
+    }
+    
+    public static void displayStatistics(StatsData stats) {
+      //Header
+      System.out.printf("%-20s %-20s %-20s %-20s %-20s %n",
+                        "Total Rolls",
+                        "Avg Rolls Per Game",
+                        "Cumulative Score",
+                        "Avg Score",
+                        "Avg # Of Dice Used");
+      //Data
+      System.out.printf("%-20s %-20s %-20s %-20s %-20s %n",
+                        stats.getTotalRolls(),
+                        stats.getAvgRollsPerGame(),
+                        stats.getCumulativeScore(),
+                        stats.getAvgScore(),
+                        stats.getAvgNumDiceUsed());
     }
     
     public static int changeDice() {
@@ -118,7 +207,7 @@ public class Main {
             
             numDice = getIntInput();
             
-         } while (numDice < 1 || numDice > 3);
+         } while (!validIntInput(numDice, 1, 3));
          
          return numDice;
     }
@@ -128,12 +217,20 @@ public class Main {
       int input = 0;
       
       while (!scan.hasNextInt()) {
-         System.out.println("\nError: Input must be an integer, please try again!\n");
+         System.out.println("\nError: Input must be an integer, please try again!");
          scan.next(); //Clears the new line character
       }
       
       input = scan.nextInt();
       
       return input;
+    }
+    
+    public static boolean validIntInput(int input, int min, int max) {
+      if (input < min || input > max) {
+         System.out.println("\nError: Invalid option, try again!");
+         return false;
+      }
+      return true;
     }
 }
