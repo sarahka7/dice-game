@@ -28,8 +28,15 @@ root of the repository.
 
 # Running the Game
 
-Running the tests requires Java JDK 7 or higher to be installed and available
-on your `PATH`.
+CLI and GUI jar files of the game can be downloaded from the releases page.
+
+Note that the game requires Java 8 in order to run.
+
+The game can also be compiled and run using gradle as described below.
+
+Note that gradle does not need to be installed prior to running the commands
+below.
+
 
 ## Linux
 
@@ -50,17 +57,18 @@ on your `PATH`.
 ### CLI Version
 
 ```
-gradle.bat :cli:run
+gradlew :cli:run
 ```
 
 ### Swing GUI Version
+
 ```
-gradle.bat :gui:run
+gradlew :gui:run
 ```
 
 # Running the Tests
 
-Running the tests requires Java JDK 7 or higher to be installed and available
+Running the tests requires Java JDK 8 or higher to be installed and available
 on your `PATH`.
 
 ## Linux
@@ -71,5 +79,5 @@ on your `PATH`.
 ## Windows
 
 ```
-gradlew.bat check
+gradlew check
 ```

@@ -5,8 +5,7 @@ public class RollRecord {
     private int gameId;
     private int numDice;
     private int rollValue;
-    private int rollsCount;
-    private int totalScore;
+    private int score;
 
     /**
      * Creates an object after a game has been completed. The goal of this object is to provide details in the database.
@@ -16,17 +15,30 @@ public class RollRecord {
      * @param  numDice    Number of dice the player chooses to roll.
      * @param  rollValue  The total value of all dice rolled by the player.
      * @param  rollsCount Number of rolls by the player before the game was finished.
-     * @param  totalScore Total score after the game is finished.
      */
     public RollRecord(String userId, int gameId, int numDice, int rollValue,
-                      int rollsCount, int totalScore) {
+                      int score) {
         this.userId = userId;
         this.gameId = gameId;
         this.numDice = numDice;
         this.rollValue = rollValue;
-        this.rollsCount = rollsCount;
-        this.totalScore = totalScore;
+        this.score = score;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (!(other instanceof RollRecord)) {
+            return false;
+        }
+
+        RollRecord that = (RollRecord) other;
+
+        return this.userId.equals(that.userId) &&
+            this.gameId == that.gameId &&
+            this.numDice == that.numDice &&
+            this.rollValue == that.rollValue &&
+            this.score == that.score;
+        }
 
     /**
      * Function to return the userId
@@ -61,18 +73,10 @@ public class RollRecord {
     }
 
     /**
-     * Function to return the total number of rolls by a player in a game.
-     * @return int -> rollsCount Number of rolls by the player before the game was finished.
-     */
-    public int getRollsCount() {
-        return rollsCount;
-    }
-
-    /**
      * Function to return the total score for a player.
-     * @return int -> totalScore Total score after the game is finished.
+     * @return int -> score The score after the game is finished.
      */
-    public int getTotalScore() {
-        return totalScore;
+    public int getScore() {
+        return score;
     }
 }

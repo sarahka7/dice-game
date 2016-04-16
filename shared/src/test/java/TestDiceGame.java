@@ -1,36 +1,27 @@
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 import java.io.IOException;
-
+import java.io.File;
 import dice.*;
 
 public class TestDiceGame {
 
     @Test
-    public void rollSingelDie() {
-        for (int rollIdx = 0; rollIdx < 1000; rollIdx++) {
-            DiceGame game = new DiceGame();
-
-            try {
-                int roll = game.rollSingle();
-                assertTrue(roll >= 1 && roll <= 6);
-            }
-            catch (RollAfterGameOverException e) {
-                fail();
-            }
-
-        }
-    }
-
-    @Test
     public void testRoll1Die() {
         for (int rollIdx = 0; rollIdx < 1000; rollIdx++) {
 
-            DiceGame game = new DiceGame();
+            DiceGame game = null;
+            try {
+                Database db = Database.create("mock", "dummyFilename");
+                game = DiceGame.create("AAA", db);
+            }
+            catch (InvalidUsernameException e) {
+            }
 
             try {
-                int roll = game.roll(1);
-                assertTrue(roll >= 1 && roll <= 6);
+                RollResult roll = game.roll(1);
+                assertTrue(roll.sum() >= 1 && roll.sum() <= 6);
             }
             catch (RollAfterGameOverException e) {
                 fail();
@@ -42,11 +33,17 @@ public class TestDiceGame {
     public void testRoll2Dice() {
         for (int rollIdx = 0; rollIdx < 1000; rollIdx++) {
 
-            DiceGame game = new DiceGame();
+            DiceGame game = null;
+            try {
+                Database db = Database.create("mock", "dummyFilename");
+                game = DiceGame.create("AAA", db);
+            }
+            catch (InvalidUsernameException e) {
+            }
 
             try {
-                int roll = game.roll(2);
-                assertTrue(roll >= 2 && roll <= 12);
+                RollResult roll = game.roll(2);
+                assertTrue(roll.sum() >= 2 && roll.sum() <= 12);
             }
             catch (RollAfterGameOverException e) {
                 fail();
@@ -58,11 +55,17 @@ public class TestDiceGame {
     public void testRoll3Dice() {
         for (int rollIdx = 0; rollIdx < 1000; rollIdx++) {
 
-            DiceGame game = new DiceGame();
+            DiceGame game = null;
+            try {
+                Database db = Database.create("mock", "dummyFilename");
+                game = DiceGame.create("AAA", db);
+            }
+            catch(InvalidUsernameException e) {
+            }
 
             try {
-                int roll = game.roll(3);
-                assertTrue(roll >= 3 && roll <= 18);
+                RollResult roll = game.roll(3);
+                assertTrue(roll.sum() >= 3 && roll.sum() <= 18);
             }
             catch (RollAfterGameOverException e) {
                 fail();
@@ -73,12 +76,18 @@ public class TestDiceGame {
     @Test
     public void testGetCurrentTotal() {
 
-        DiceGame game = new DiceGame();
+        DiceGame game = null;
+        try {
+            Database db = Database.create("mock", "dummyFilename");
+            game = DiceGame.create("AAA", db);
+        }
+        catch (InvalidUsernameException e) {
+        }
 
         try {
-            int total = game.roll(1);
-            total += game.roll(1);
-            total += game.roll(1);
+            int total = game.roll(1).sum();
+            total += game.roll(1).sum();
+            total += game.roll(1).sum();
 
             int currentTotal = game.getCurrentTotal();
             assertEquals(total, currentTotal);
@@ -91,12 +100,19 @@ public class TestDiceGame {
     @Test
     public void testGetScoreLessThan23() {
 
-        DiceGame game = new DiceGame();
+        DiceGame game = null;
 
         try {
-            int total = game.roll(3);
+            Database db = Database.create("mock", "dummyFilename");
+            game = DiceGame.create("AAA", db);
+        }
+        catch (InvalidUsernameException e) {
+        }
 
-            assertEquals(total, game.getScore());
+        try {
+            RollResult roll = game.roll(3);
+
+            assertEquals(roll.sum(), game.getScore());
         }
         catch (RollAfterGameOverException e) {
             fail();
@@ -106,7 +122,13 @@ public class TestDiceGame {
     @Test
     public void testGetScoreEqualTo23() {
 
-        DiceGame game = new DiceGame();
+        DiceGame game = null;
+        try {
+            Database db = Database.create("mock", "dummyFilename");
+            game = DiceGame.create("AAA", db);
+        }
+        catch (InvalidUsernameException e) {
+        }
 
         int total = 0;
         int index = 0;
@@ -114,14 +136,19 @@ public class TestDiceGame {
         // hack. go until we randomly get a score of 23
         do {
             try {
-                total += game.roll(1);
+                total += game.roll(1).sum();
             }
             catch (RollAfterGameOverException e) {
                 fail();
             }
 
             if (total > 23) {
-                game = new DiceGame();
+                try {
+                    Database db = Database.create("mock", "dummyFilename");
+                    game = DiceGame.create("AAA", db);
+                }
+                catch (InvalidUsernameException e) {
+                }
                 total = 0;
             }
 
@@ -138,16 +165,22 @@ public class TestDiceGame {
 
     @Test
     public void testGetScoreOver23() {
-        DiceGame game = new DiceGame();
+        DiceGame game = null;
+        try {
+            Database db = Database.create("mock", "dummyFilename");
+            game = DiceGame.create("AAA", db);
+        }
+        catch (InvalidUsernameException e) {
+        }
 
         try {
-            int total = game.roll(3);
+            int total = game.roll(3).sum();
             
             while (total < 23) {
-                total += game.roll(3);
+                total += game.roll(3).sum();
             }
 
-            assertEquals(0, game.getScore());
+            assertThat(game.getScore(), anyOf(equalTo(0), equalTo(46)));
         }
         catch (RollAfterGameOverException e) {
             fail();
@@ -156,8 +189,145 @@ public class TestDiceGame {
     
     @Test
     public void testZeroScore() {
-        DiceGame game = new DiceGame();
+        DiceGame game = null;
+        try {
+            Database db = Database.create("mock", "dummyFilename");
+            game = DiceGame.create("AAA", db);
+        }
+        catch (InvalidUsernameException e) {
+        }
 
         assertEquals(0, game.getScore());
+    }
+
+    @Test
+    public void usernameDefault() {
+        DiceGame game = null;
+        try {
+            Database db = Database.create("mock", "dummyFilename");
+            game = DiceGame.create("AAA", db);
+        }
+        catch (InvalidUsernameException e) {
+        }
+        assertThat(game.getUsername(), equalTo("AAA"));
+    }
+
+    @Test
+    public void usernameCustom() {
+        DiceGame game = null;
+        try {
+            Database db = Database.create("mock", "dummyFilename");
+            game = DiceGame.create("ABC", db);
+        }
+        catch (InvalidUsernameException e) {
+            fail();
+        }
+
+        assertThat(game.getUsername(), equalTo("ABC"));
+    }
+
+    @Test
+    public void usernameBlankRaisesException() {
+        DiceGame game = null;
+        try {
+            Database db = Database.create("mock", "dummyFilename");
+            game = DiceGame.create("", db);
+            fail();
+        }
+        catch (InvalidUsernameException e) {
+            assertThat(e.getMessage(), is("Blank username"));
+        }
+    }
+    @Test
+    public void usernameTooShortRaisesException() {
+        DiceGame game = null;
+        try {
+            Database db = Database.create("mock", "dummyFilename");
+            game = DiceGame.create("AB", db);
+            fail();
+        }
+        catch (InvalidUsernameException e) {
+            assertThat(e.getMessage(), is("Username 'AB' too short"));
+        }
+    }
+
+    @Test
+    public void usernameTooLongRaisesException() {
+        DiceGame game = null;
+        try {
+            Database db = Database.create("mock", "dummyFilename");
+            game = DiceGame.create("ABCD", db);
+            fail();
+        }
+        catch (InvalidUsernameException e) {
+            assertThat(e.getMessage(), is("Username 'ABCD' too long"));
+        }
+    }
+
+    @Test
+    public void rollSavesToDatabase() {
+        String dbPath = "src/test/resources/tempTestDbDiceGame.csv";
+        File f = new File(dbPath);
+        f.delete();
+
+        Database db = Database.create("concrete", dbPath);
+        DiceGame game = null;
+        try {
+            game = DiceGame.create("TAP", db);
+        }
+        catch (InvalidUsernameException e) {
+        }
+
+        int rollValue = 0;
+        try {
+            rollValue = game.roll(3).sum();
+        }
+        catch (RollAfterGameOverException e) {
+        }
+
+        RollRecord[] records = db.getAllRecords();
+
+        assertThat(records.length, equalTo(1));
+        
+        RollRecord rec = records[0];
+
+        assertThat(rec.getUserId(), equalTo("TAP"));
+        assertThat(rec.getGameId(), equalTo(0));
+        assertTrue(rec.getRollValue() >= 3 && rec.getRollValue() <= 18);
+        assertThat(rec.getNumDice(), equalTo(3));
+        assertThat(rec.getScore(), equalTo(rollValue));
+    }
+
+    @Test
+    public void gameIdIncrements() {
+        String dbPath = "src/test/resources/tempTestDbDiceGame.csv";
+        File f = new File(dbPath);
+        f.delete();
+
+        Database db = Database.create("concrete", dbPath);
+
+        DiceGame gameA = null;
+        DiceGame gameB = null;
+        try {
+            gameA = DiceGame.create("TAP", db);
+            gameB = DiceGame.create("CHS", db);
+        }
+        catch (InvalidUsernameException e) {
+        }
+
+        try {
+            gameA.roll(3);
+            gameB.roll(3);
+        }
+        catch (RollAfterGameOverException e) {
+        }
+
+        RollRecord[] records = db.getAllRecords();
+
+        assertThat(records.length, equalTo(2));
+        assertThat(records[0].getGameId(), equalTo(0));
+        assertThat(records[0].getUserId(), equalTo("TAP"));
+        assertThat(records[1].getGameId(), equalTo(1));
+        assertThat(records[1].getUserId(), equalTo("CHS"));
     }
 }
