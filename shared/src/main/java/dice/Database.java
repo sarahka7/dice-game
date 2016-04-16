@@ -1,10 +1,12 @@
 package dice;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 
 
 public abstract class Database {
@@ -19,6 +21,7 @@ public abstract class Database {
 
     public abstract RollRecord[] getAllRecords();
     public abstract RollRecord[] getRecordsForUser(String userId);
+    public abstract void addRoll(RollRecord roll);
 }
 
 class MockDatabase extends Database {
@@ -52,6 +55,9 @@ class MockDatabase extends Database {
         }
 
     }
+
+    public void addRoll(RollRecord roll) {
+    }
 }
 
 class ConcreteDatabase extends Database {
@@ -59,19 +65,6 @@ class ConcreteDatabase extends Database {
 
     public ConcreteDatabase(String filename) {
         this.filename = filename;
-    }
-
-    private CSVReader getReader() {
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader(filename);
-        }
-        catch(IOException e) {
-            // TODO: handle properly
-            System.out.println("Error opening file");
-        }
-
-        return new CSVReader(fileReader);
     }
 
     public RollRecord[] getAllRecords() {
@@ -129,4 +122,54 @@ class ConcreteDatabase extends Database {
 
         return records.toArray(new RollRecord[records.size()]);
     }
+
+    public void addRoll(RollRecord roll) {
+        CSVWriter writer = getWriter();
+        String[] line = {
+            roll.getUserId(),
+            Integer.toString(roll.getGameId()),
+            Integer.toString(roll.getNumDice()),
+            Integer.toString(roll.getRollValue()),
+            Integer.toString(roll.getScore())
+        };
+
+        System.out.println("Len: " + line.length);
+        for (String n : line) {
+            System.out.println(n);
+        }
+
+        writer.writeNext(line);
+        try {
+            writer.close();
+        }
+        catch (IOException e) {
+        }
+    }
+
+    private CSVReader getReader() {
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader(filename);
+        }
+        catch(IOException e) {
+            // TODO: handle properly
+            System.out.println("Error opening file");
+        }
+
+        return new CSVReader(fileReader);
+    }
+
+    private CSVWriter getWriter() {
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(filename, true);
+        }
+        catch(IOException e) {
+            // TODO: handle properly
+            System.out.println("Error opening file");
+        }
+
+        return new CSVWriter(fileWriter);
+    }
+
 }
