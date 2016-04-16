@@ -376,6 +376,12 @@ public class DiceGameGUI extends javax.swing.JFrame {
                JOptionPane.showMessageDialog(null, "Invalid Input, must contain 3 alpha characters!", "Invalid Input",
                JOptionPane.OK_OPTION);
        } while (name.length() != 3 || !name.matches("[a-zA-Z]+"));
+       
+       try {
+         thisGame = DiceGame.create(name);
+       } catch(InvalidUsernameException ex) {
+         ex.printStackTrace();
+       }
 
        lblPlayerName.setText(name);
     }//GEN-LAST:event_formWindowOpened
